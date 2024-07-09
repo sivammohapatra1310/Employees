@@ -14,25 +14,8 @@ const port = 3000;
 // import mongoose from "mongoose"
 const uri = "mongodb+srv://sivammohapatra:User2004@cluster0.jlvlmmi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-mongoose.connect(uri)
-  .then(() => console.log('MongoDB connected..........................'))
-  .catch(err => console.log(err));
 
-const mageSchema = new mongoose.Schema({ 
-    name: { 
-        type: String, 
-        require: true
-    }, 
-    power_type: { 
-        type: String, 
-        require: true
-    }, 
-    mana_power: Number, 
-    health: Number, 
-    gold: Number 
-}) 
 
-const Mage = new mongoose.model("tweee", mageSchema) 
 
 const client = new MongoClient(uri, {
     serverApi: {
@@ -85,25 +68,6 @@ run().catch(console.dir);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/ddd', async (req, res) => {
-    const mage_1 = new Mage({
-      name: "Takashi",
-      power_type: 'Element',
-      mana_power: 200,
-      health: 1000,
-      gold: 10000
-    });
-  
-    try {
-      let data = await mage_1.save();
-      console.log("mage_1;;;;;;;;",data);
-      res.send('Mage saved successfully');
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error saving mage');
-    }
-  });
 
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'));

@@ -29,7 +29,7 @@ app.get('/ddd', async (req, res) => {
   const mage_1 = new Mage({
     name: "Takashi",
     power_type: 'Element',
-    mana_power:" string",
+    mana_power: "300",
     health: 1000,
     gold: 10000
   });
@@ -41,8 +41,8 @@ app.get('/ddd', async (req, res) => {
   } catch (err) {
     console.error("message", err.message);
     res.status(500).json({
-        status:"false",
-        message: err?.message || "something went wrong"
+      status: "false",
+      message: err?.message || "something went wrong"
     })
   }
 });
